@@ -16,14 +16,14 @@ export default function Header() {
   return (
     <header className="flex items-center w-full h-16 px-6 border-b bg-white fixed top-0 left-0 z-50">
       {/* Logo */}
-      <div className="mr-10">
-        <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className="mr-8">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.5 12.5H12.5V27.5H9.5V12.5ZM3.5 17H6.5V23H3.5V17ZM15.5 5H18.5V32H15.5V5ZM21.5 8H24.5V35H21.5V8ZM27.5 12.5H30.5V27.5H27.5V12.5ZM33.5 17H36.5V23H33.5V17Z" fill="#0E121B" />
         </svg>
       </div>
 
       {/* Navigation */}
-      <nav className="flex gap-6 font-medium text-sm">
+      <nav className="flex gap-6 font-medium text-[16px] leading-6">
         <Link href="/">Home</Link>
         <Link href="/services">Services</Link>
         <Link href="/workers">Workers</Link>
@@ -31,22 +31,15 @@ export default function Header() {
       </nav>
 
       {/* Right side actions */}
-      <div className="ml-auto flex items-center gap-4">
+      <div className="ml-auto me-4 flex items-center gap-4">
         {/* Search Input */}
         <div className="relative">
-          <input
-            className="border border-orange-300 rounded-md py-1.5 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300"
-            placeholder="Discover more"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <input className="border border-orange-300 rounded-md py-1.5 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" placeholder="Discover more" value={search} onChange={(e) => setSearch(e.target.value)} />
           <SearchIcon className="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400" />
         </div>
 
         {/* Create Button */}
-        <button className="flex font-medium bg-black text-sm text-white p-2 shadow-[0px_1px_2px_rgba(27,28,29,0.48),_0px_0px_0px_1px_#242628] rounded-md hover:bg-gray-900">
-          Create +
-        </button>
+        <button className="flex font-medium bg-black text-sm text-white p-2 shadow-[0px_1px_2px_rgba(27,28,29,0.48),_0px_0px_0px_1px_#242628] rounded-[10px] hover:bg-gray-900">Create +</button>
 
         {/* Flag Icon */}
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +58,6 @@ export default function Header() {
             </clipPath>
           </defs>
         </svg>
-
 
         {/* Notification Icon */}
         <div className="relative">
@@ -89,22 +81,18 @@ export default function Header() {
               </filter>
             </defs>
           </svg>
-
         </div>
 
         {/* Account Dropdown with <img> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-1 text-sm font-medium focus:outline-none">
-              <img
-                src="https://i.pravatar.cc/150?img=32"
-                alt="avatar"
-                className="w-7 h-7 rounded-full object-cover"
-              />
+            <div className=" flex items-center gap-1 text-sm font-medium focus:outline-none border p-1 rounded-[10px]">
+              <img src="https://i.pravatar.cc/150?img=32" alt="avatar" className="w-7 h-7 rounded-full object-cover" />
+              <p className="text-[14px] leading-5 font-medium text-[#0E121B]">Account</p>
               <ChevronDown className="w-4 h-4 text-gray-600" />
-            </button>
+            </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white border rounded shadow-md mt-2 p-2">
+          <DropdownMenuContent className="bg-white border rounded shadow-md mt-2 p-4 border">
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Logout</DropdownMenuItem>

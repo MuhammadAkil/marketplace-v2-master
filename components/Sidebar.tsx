@@ -61,34 +61,20 @@ export function Sidebar() {
   ]
 
   return (
-    <aside className="ms-16 w-[240px] max-w-[270px] bg-white shadow-md h-[calc(100vh-64px)] sticky top-16 border-r-2">
-      <div className="p-4">
+    <aside className="ms-8 w-[240px] max-w-[270px] bg-white shadow-md h-[calc(100vh-64px)] sticky top-16 border-r-2">
+      <div className="p-6">
         <nav className="space-y-1">
           {sidebarItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => setActiveItem(item.name)}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition-colors group ${
-                activeItem === item.name
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              }`}
-            >
+            <button key={item.name} onClick={() => setActiveItem(item.name)} className={`w-full flex items-center justify-between min-w-[168px] px-3 gap-2 py-2 rounded-lg text-left transition-colors group ${activeItem === item.name ? "bg-[#F6F8FA] text-[#0A0D14]" : "text-[#525866] hover:bg-gray-50 hover:text-gray-900"}`}>
               <div className="flex items-center space-x-3">
                 <span className={`${activeItem === item.name ? "text-gray-700" : "text-gray-400"}`}>{item.icon}</span>
                 <span className="text-sm font-medium">{item.name}</span>
               </div>
-              {item.hasSubmenu && (
-                <ChevronRight
-                  className={`w-4 h-4 transition-transform ${
-                    activeItem === item.name ? "text-gray-600" : "text-gray-400"
-                  }`}
-                />
-              )}
+              {item.hasSubmenu && <ChevronRight className={`w-4 h-4 transition-transform ${activeItem === item.name ? "text-[#525866]" : "text-gray-400"}`} />}
             </button>
           ))}
         </nav>
       </div>
     </aside>
-  )
+  );
 }
