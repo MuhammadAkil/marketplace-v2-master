@@ -130,15 +130,28 @@ export function ServicesContent() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <h1 className="text-[24px] font-medium leading-8 text-[#222530">My Services</h1>
-                <button className="border rounded-lg" onClick={() => setIsChangeMode(!isChangeMode)}>
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 8C0 3.58172 3.58172 0 8 0H28C32.4183 0 36 3.58172 36 8V28C36 32.4183 32.4183 36 28 36H8C3.58172 36 0 32.4183 0 28V8Z" fill="#F5F7FA" />
+                <button
+                    className={`rounded-lg transition-opacity duration-200 ${isChangeMode ? "opacity-1 border-none" : "opacity-100 border-2 border-gray-200"}`}
+                    onClick={() => setIsChangeMode(!isChangeMode)}
+                >
+                    <svg
+                        width="36"
+                        height="36"
+                        viewBox="0 0 36 36"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M0 8C0 3.58172 3.58172 0 8 0H28C32.4183 0 36 3.58172 36 8V28C36 32.4183 32.4183 36 28 36H8C3.58172 36 0 32.4183 0 28V8Z"
+                            fill="#F5F7FA"
+                        />
                         <path
                             d="M10.5 22.5H15.75V24H10.5V22.5ZM10.5 17.25H17.25V18.75H10.5V17.25ZM10.5 12H25.5V13.5H10.5V12ZM24.5055 18.7687L25.3725 18.4755L26.1225 19.7745L25.4355 20.3783C25.522 20.7882 25.522 21.2118 25.4355 21.6217L26.1225 22.2255L25.3725 23.5245L24.5055 23.2313C24.198 23.5087 23.832 23.7225 23.4293 23.8538L23.25 24.75H21.75L21.57 23.853C21.1719 23.7229 20.8056 23.5109 20.4945 23.2305L19.6275 23.5245L18.8775 22.2255L19.5645 21.6217C19.478 21.2118 19.478 20.7882 19.5645 20.3783L18.8775 19.7745L19.6275 18.4755L20.4945 18.7687C20.802 18.4912 21.168 18.2775 21.5707 18.1462L21.75 17.25H23.25L23.43 18.147C23.832 18.2775 24.198 18.492 24.5055 18.7695V18.7687ZM22.5 22.5C22.8978 22.5 23.2794 22.342 23.5607 22.0607C23.842 21.7794 24 21.3978 24 21C24 20.6022 23.842 20.2206 23.5607 19.9393C23.2794 19.658 22.8978 19.5 22.5 19.5C22.1022 19.5 21.7206 19.658 21.4393 19.9393C21.158 20.2206 21 20.6022 21 21C21 21.3978 21.158 21.7794 21.4393 22.0607C21.7206 22.342 22.1022 22.5 22.5 22.5Z"
-                            fill="#525866"
+                            fill={isChangeMode ? "#CACFD8" : "#000000"}
                         />
                     </svg>
                 </button>
+
             </div>
             <hr className="my-5 border-t-2 border-gray-200" />
 
@@ -165,7 +178,7 @@ export function ServicesContent() {
                             <div className="flex items-center gap-6">
                                 {/* Price */}
                                 <div className="text-center flex flex-col gap-2 min-w-[80px]">
-                                    <div className="font-normal leading-6 h-[24px] text-[#0E121B] text-[16px]">¥{service.price}</div>
+                                    <div className="font-normal leading-6 h-[24px] text-[#0E121B] text-[16px]"><small>¥</small>{service.price}</div>
                                     <div className="text-[12px] font-normal leading-4 text-[#525866]">Price</div>
                                 </div>
 

@@ -14,7 +14,8 @@ export default function Header() {
   const [search, setSearch] = useState("");
 
   return (
-    <header className="flex items-center w-full h-16 px-6 border-b bg-white fixed top-0 left-0 z-50">
+    <header className="w-full h-16 border-b bg-white fixed top-0 left-0 z-50">
+      <div className="flex items-center justify-center w-full h-full px-6 max-w-[1440px] mx-auto">
       {/* Logo */}
       <div className="mr-8">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,6 +99,7 @@ export default function Header() {
             <DropdownMenuItem>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       </div>
     </header>
   );

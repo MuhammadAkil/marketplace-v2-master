@@ -37,12 +37,11 @@ async function RootLayout({
     <html lang={locale} className={fontClasses}>
       <body className="flex flex-col min-h-screen">
         <Header />
-        <div className="flex ">
-          <div>
-          
-          <Sidebar />
+        <div className="flex justify-center w-full">
+          <div className="flex w-full max-w-[1440px]">
+            <Sidebar />
+            <MainContent>{children}</MainContent>
           </div>
-          <MainContent>{children}</MainContent>
         </div>
       </body>
     </html>

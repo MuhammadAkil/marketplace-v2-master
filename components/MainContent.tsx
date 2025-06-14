@@ -1,7 +1,3 @@
 export default function MainContent({ children }: { children: React.ReactNode }) {
-  return (
-    <main className="w-full p-2">
-      {children}
-    </main>
-  )
+  return <main className="flex-1 p-6 overflow-auto">{children}</main>;
 }
