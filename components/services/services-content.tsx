@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Badge, Filter } from 'lucide-react'
 import * as Switch from '@radix-ui/react-switch'
+import Image from "next/image"
 
 interface Service {
     id: string
@@ -86,6 +87,8 @@ export function ServicesContent() {
     const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
     const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
     const [servicesState, setServicesState] = useState(services)
+    const [flashId, setFlashId] = useState(null);
+
 
     const handleDeleteClick = (id: string) => {
         setSelectedServiceId(id)
@@ -105,6 +108,16 @@ export function ServicesContent() {
         setShowDeleteModal(false)
         setSelectedServiceId(null)
     }
+    const handleClick = (id: any) => {
+        setFlashId(id);
+        setSelectedCardId(id);
+
+        setTimeout(() => {
+            setFlashId(null);
+        }, 1000);
+    };
+
+
 
     const handleToggleActive = (id: string, checked: boolean) => {
         setServicesState(servicesState.map((s) =>
@@ -117,7 +130,7 @@ export function ServicesContent() {
 				{/* Header */}
 				<div className="flex items-center justify-between">
 					<h1 className="text-lg font-medium leading-8 text-gray-800">My Services</h1>
-					<button onClick={() => setIsChangeMode(!isChangeMode)}>
+                <button className="border rounded-lg" onClick={() => setIsChangeMode(!isChangeMode)}>
 						<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 8C0 3.58172 3.58172 0 8 0H28C32.4183 0 36 3.58172 36 8V28C36 32.4183 32.4183 36 28 36H8C3.58172 36 0 32.4183 0 28V8Z" fill="#F5F7FA" />
 							<path
@@ -132,51 +145,45 @@ export function ServicesContent() {
 				{/* Services List */}
 				<div className="space-y-3">
 					{servicesState.map((service) => (
-                        <div key={service.id} className={`bg-white rounded-lg p-3 transition-all duration-300 hover:bg-gray-100 ${selectedCardId === service.id ? "border-2 border-gray-500" : ""}`} onClick={() => setSelectedCardId(service.id)}>
-							<div className="flex items-center justify-between space-x-3">
+                        <div key={service.id}
+                            onClick={() => handleClick(service.id)} className={`rounded-lg pe-6 hover:bg-gray-100 transform transition-all duration-500 ${flashId === service.id ? "bg-blue-100" : "bg-white"}`}
+                        >
+                            <div className="flex items-center justify-between space-x-3 mb-6">
 								{/* Service Image */}
 								<div className="flex-shrink-0">
-									<div className="w-32 h-20 rounded-xl bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400"></div>
+                                    <Image width={148} height={83} src="/images/my-service.jpg" alt="Preview" className="rounded-xl object-cover" />
 								</div>
 
 								{/* Service Info */}
-								<div className="flex-1 min-w-0">
-									<h3 className="font-medium text-[#0E121B] text-sm mb-1">{service.title}</h3>
-									<span className="text-[#525866] text-xs">{service.status}</span>
+                                <div className="flex-1 flex-col gap-4">
+                                    <h3 className="font-medium text-[#0E121B] text-[20px] leading-7 mb-4">{service.title}</h3>
+                                    <span className="text-[#525866] text-center bg-[#F2F5F8] font-medium px-2 text-[12px] leading-4 rounded-lg py-1">{service.status}</span>
 								</div>
 
 								<div className="flex items-center gap-6">
 									{/* Price */}
-									<div className="text-center">
-										<div className="text-base font-semibold text-gray-900">¥{service.price}</div>
-										<div className="text-xs text-gray-500">Price</div>
+                                    <div className="text-center flex flex-col gap-2 min-w-[80px]">
+                                        <div className="font-normal leading-6 h-[24px] text-[#0E121B] text-[16px]">¥{service.price}</div>
+                                        <div className="text-[12px] font-normal leading-4 text-[#525866]">Price</div>
 									</div>
 
 									{/* Orders */}
-									<div className="text-center">
-										<div className="text-base font-semibold text-gray-900">{service.orders}</div>
-										<div className="text-xs text-gray-500">Orders</div>
+                                    <div className="text-center flex flex-col gap-2 min-w-[80px]">
+                                        <div className="font-normal leading-6 text-[#0E121B] text-[16px]">{service.orders}</div>
+                                        <div className="text-[12px] font-normal leading-4 text-[#525866]">Orders</div>
 									</div>
 
 									{/* Switch and Delete Icon (visible in change mode) */}
 									{isChangeMode && (
-										<div className="flex items-center gap-2">
-                                            <Switch.Root
-                                                checked={service.isActive}
-                                                onCheckedChange={(checked) => handleToggleActive(service.id, checked)}
-                                                className={`w-[30px] h-[18px] rounded-full outline-none cursor-pointer transition-colors duration-200 ${service.isActive
-                                                        ? "bg-black"
-                                                        : "bg-gray-400 opacity-50 cursor-not-allowed"
-                                                    }`}
-                                                disabled={false} // Allow toggling for all services
-                                            >
-                                                <Switch.Thumb
-                                                    className="block w-[11px] h-[11px] bg-white rounded-full transition-transform duration-200 translate-x-1 data-[state=checked]:translate-x-[15px]"
-                                                />
+                                        <div className="flex items-center justify-end gap-2 min-w-[142px] h-6 min-h-6">
+                                            <Switch.Root checked={service.isActive} onCheckedChange={(checked) => handleToggleActive(service.id, checked)} className={`w-[32px] h-[20px] rounded-full outline-none cursor-pointer transition-colors duration-200 ${service.isActive ? "bg-black" : "bg-gray-400 opacity-50 cursor-not-allowed"}`} disabled={false}>
+                                                <Switch.Thumb className="block w-[14px] h-[14px] bg-white rounded-full transition-transform duration-200 translate-x-1 data-[state=checked]:translate-x-[15px] flex items-center justify-center">
+                                                    <div className="w-[6px] h-[6px] bg-black rounded-full" />
+                                                </Switch.Thumb>
                                             </Switch.Root>
 
-                                            <span className="text-xs ms-2 text-[#0E121B]">Display</span>
-											<button onClick={() => handleDeleteClick(service.id)} className="focus:outline-none">
+                                            <span className="text-[14px] font-normal leading-5 text-[#0E121B] w-12">Display</span>
+                                            <button onClick={() => handleDeleteClick(service.id)} className="p-[2px] focus:outline-none">
 												<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path
 														d="M13.75 6H17.5V7.5H16V17.25C16 17.4489 15.921 17.6397 15.7803 17.7803C15.6397 17.921 15.4489 18 15.25 18H4.75C4.55109 18 4.36032 17.921 4.21967 17.7803C4.07902 17.6397 4 17.4489 4 17.25V7.5H2.5V6H6.25V3.75C6.25 3.55109 6.32902 3.36032 6.46967 3.21967C6.61032 3.07902 6.80109 3 7 3H13C13.1989 3 13.3897 3.07902 13.5303 3.21967C13.671 3.36032 13.75 3.55109 13.75 3.75V6ZM14.5 7.5H5.5V16.5H14.5V7.5ZM7.75 9.75H9.25V14.25H7.75V9.75ZM10.75 9.75H12.25V14.25H10.75V9.75ZM7.75 4.5V6H12.25V4.5H7.75Z"

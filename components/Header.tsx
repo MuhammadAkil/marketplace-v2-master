@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, SearchCheckIcon } from "lucide-react";
+import { ChevronDown, SearchIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -40,11 +40,11 @@ export default function Header() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <SearchCheckIcon className="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400" />
+          <SearchIcon className="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400" />
         </div>
 
         {/* Create Button */}
-        <button className="bg-black text-white px-4 py-1.5 text-sm rounded-md hover:bg-gray-900">
+        <button className="flex font-medium bg-black text-sm text-white p-2 shadow-[0px_1px_2px_rgba(27,28,29,0.48),_0px_0px_0px_1px_#242628] rounded-md hover:bg-gray-900">
           Create +
         </button>
 
