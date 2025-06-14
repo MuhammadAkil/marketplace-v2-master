@@ -39,6 +39,8 @@ export default antfu({
   ],
 
   rules: {
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/no-unescaped-entities": "off",
     'react/prop-types': 'off',
     'max-lines': ['error', { max: 500 }],
     'style/max-len': ['error', {
