@@ -132,7 +132,7 @@ export function ServicesContent() {
 				{/* Services List */}
 				<div className="space-y-3">
 					{servicesState.map((service) => (
-						<div key={service.id} className={`bg-white rounded-lg p-3 transition-all duration-300 hover:bg-gray-200 ${selectedCardId === service.id ? "border-2 border-purple-500" : ""}`} onClick={() => setSelectedCardId(service.id)}>
+                        <div key={service.id} className={`bg-white rounded-lg p-3 transition-all duration-300 hover:bg-gray-100 ${selectedCardId === service.id ? "border-2 border-gray-500" : ""}`} onClick={() => setSelectedCardId(service.id)}>
 							<div className="flex items-center justify-between space-x-3">
 								{/* Service Image */}
 								<div className="flex-shrink-0">
